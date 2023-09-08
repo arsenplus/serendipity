@@ -1,7 +1,7 @@
 FROM python:3.8
 
 WORKDIR /workspace
-COPY requirements.txt main.py data cache model ./
+COPY requirements.txt main.py data cache model serendipity.py ./
 
 RUN pip install -r requirements.txt
 RUN python -m spacy download en_core_web_sm
