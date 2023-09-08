@@ -14,6 +14,13 @@ docker-compose up -d --build
 ```
 - then access the interface at http://localhost:9999
 
+## Algorithm
+- topic modelling pipeline (embeddings -> dimensionality reduction -> clustering -> representation) extracts topics
+- NER model extracts named entities
+- zero-shot classificator categorizes the texts into one or more custom classes
+- corpus statistics (n-gram counts) are gathered per the whole corpus and each topic separately
+- Interactive DataViz dashboards are built on top of the preceding steps
+
 ## TO-DO:
 - implement coreference resolution and zero-shot ner for more accuracy/custom entities extraction
 - implement UI and improve data viz
