@@ -1,6 +1,5 @@
 # serendipity
-<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/pics/ser_logo.jpg width="500"/>
-  </div> <br/>
+<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/pics/ser_logo.jpg width="500"/></div> 
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)<br/>
 Open-source tool for EDA-analysis of textual corpora. Built with BERTopic, transformers, and spaCy.
 
