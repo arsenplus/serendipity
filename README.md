@@ -15,7 +15,8 @@ This repo contains a minimal working prototype, demonstrating the potential of t
 docker-compose up -d --build
 ```
 
-![]([https://github.com/arsenplus/serendipity/blob/main/show(1).gif)<br/>
+<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show(1).gif width="100"/>
+  </div>
 - then access the interface at http://localhost:9999
 
 ## Algorithm
