@@ -14,9 +14,20 @@ This repo contains a minimal working prototype, demonstrating the potential of t
 ```
 docker-compose up -d --build
 ```
-- then access the interface at http://localhost:9999
 
+<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show(1).gif width="1000"/>
+  </div> <br/>
+
+- then access the interface at http://localhost:9999 
+  
+<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show2(1).gif width="1000"/>
+  </div> <br/>
+  
 ## Algorithm
+
+<div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/working_flow.jpg width="1000"/>
+  </div>
+
 - topic modelling pipeline (embeddings -> dimensionality reduction -> clustering -> representation) extracts topics
 - NER model extracts named entities
 - zero-shot classificator categorizes the texts into one or more custom classes
