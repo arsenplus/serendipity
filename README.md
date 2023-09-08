@@ -4,7 +4,7 @@
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)<br/>
 Open-source tool for EDA (Exploratory Data Analysis) of textual corpora. Built with BERTopic, transformers, and spaCy.
 
-This tool would be useful for social science researchers, data journalists, busiseness analysts and PhD students, who regularly need to gain insights from text data, but have little or no experience with tuning NLP pipelines/programming complex systems.
+This tool would be useful for social science researchers, data journalists, business analysts and PhD students, who regularly need to gain insights from text data, but have little or no experience with tuning NLP pipelines/programming complex systems.
 
 This repo contains a minimal working prototype, demonstrating the potential of the technology. It has been developed during the AI Talent Hub Hackathon organized by the ITMO University in September, 2023.
 
