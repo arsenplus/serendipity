@@ -26,7 +26,7 @@ docker-compose up -d --build
 
 ## Examples
 
-Please proceed to examples.ipynb if you wish to take a closer look at how things are working under the hood and/or use Jupyter as a platform for using the tool.
+Please proceed to examples.ipynb if you wish to take a closer look at how things work under the hood and/or use Jupyter as a platform for using the tool.
   
 ## Algorithm
 
