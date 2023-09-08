@@ -23,6 +23,10 @@ docker-compose up -d --build
   
 <div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/pics/show2(1).gif width="800"/>
   </div> <br/>
+
+## Exampples
+
+Please proceed to examples.ipynb if you wish to take a closer look at how things are working under the hood and/or use Jupyter as a platform for using the tool.
   
 ## Algorithm
 
