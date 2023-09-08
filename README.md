@@ -50,6 +50,3 @@ At the moment, the instrument only supports the English language. However, addin
 - add multilingual corpora processing feature
 - add sentiment analysis feature
 - compress classification model for speedup/memory footprint reduction
-
-## Acknowledgements
-We are sincerely grateful to the [ITMO University](https://en.itmo.ru/) and the [organizers](https://ai.itmo.ru/) for hosting the hackathon
