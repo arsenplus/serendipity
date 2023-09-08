@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  gradio:
+    container_name: vizualizatorus
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: visualize
+    ports:
+            - 9999:9999
+
+    command: python3 /workspace/main.py
