@@ -20,6 +20,7 @@ docker-compose up -d --build
 - then access the interface at http://localhost:9999
 <div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show2(1).gif width="1000"/>
   </div>
+  
 ## Algorithm
 - topic modelling pipeline (embeddings -> dimensionality reduction -> clustering -> representation) extracts topics
 - NER model extracts named entities
