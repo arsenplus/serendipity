@@ -49,4 +49,4 @@ At the moment, the instrument only supports the English language. However, addin
 - implement hyperparams auto-tuning with bayesian optimization techniques
 - add multilingual corpora processing
 - add sentiment analysis feature
-- compress classification model for speedup
+- compress classification model for speedup/memory footprint reduction
