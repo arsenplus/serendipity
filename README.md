@@ -14,9 +14,9 @@ This repo contains a minimal working prototype, demonstrating the potential of t
 ```
 docker-compose up -d --build
 ```
-![]([https://github.com/arsenplus/serendipity/blob/main/show(1).gif)
+
+![]([https://github.com/arsenplus/serendipity/blob/main/show(1).gif)<br/>
 - then access the interface at http://localhost:9999
-![]([https://github.com/arsenplus/serendipity/blob/main/show2(1).gif)
 
 ## Algorithm
 - topic modelling pipeline (embeddings -> dimensionality reduction -> clustering -> representation) extracts topics
