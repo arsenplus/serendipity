@@ -17,7 +17,9 @@ docker-compose up -d --build
 
 <div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show(1).gif width="1000"/>
   </div> <br/>
+```
 - then access the interface at http://localhost:9999 <br/>
+```
 <div id="header" align="center"> <img src=https://github.com/arsenplus/serendipity/blob/main/show2(1).gif width="1000"/>
   </div> <br/>
   
