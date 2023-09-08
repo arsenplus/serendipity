@@ -47,6 +47,6 @@ At the moment, the instrument only supports the English language. However, addin
 - implement UI and improve data viz
 - allow for custom extension files upload
 - implement hyperparams auto-tuning with bayesian optimization techniques
-- add multilingual corpora processing
+- add multilingual corpora processing feature
 - add sentiment analysis feature
 - compress classification model for speedup/memory footprint reduction
