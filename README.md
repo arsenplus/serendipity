@@ -41,6 +41,7 @@ At the moment, the instrument only supports the English language. However, addin
 ## TO-DO:
 - implement coreference resolution and zero-shot ner for more accuracy/custom entities extraction
 - implement UI and improve data viz
+- allow for custom extension files upload
 - implement hyperparams auto-tuning with bayesian optimization techniques
 - add multilingual corpora processing
 - add sentiment analysis feature
