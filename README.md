@@ -16,6 +16,7 @@ docker-compose up -d --build
 
 ## TO-DO:
 - implement coreference resolution and zero-shot ner for more accuracy/custom entities extraction
-- improve the UX and data viz
+- implement UI and improve data viz
 - implement hyperparams auto-tuning with bayesian optimization techniques
 - add sentiment analysis feature
+- compress classification model for speedup
