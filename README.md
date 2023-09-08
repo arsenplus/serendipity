@@ -1,4 +1,6 @@
 # serendipity
+
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 Open-source tool for EDA-analysis of textual corpora. Built with BERTopic, transformers, and spaCy.
 
 This tool would be useful for social science researchers, data journalists, busiseness analysts and PhD students, who regularly need to gain insights from text data, but have little experience with tuning NLP pipelines.
