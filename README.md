@@ -3,7 +3,7 @@ Open-source tool for EDA-analysis of textual corpora. Built with BERTopic, trans
 
 This tool would be useful for social science researchers, data journalists, busiseness analysts and PhD students, who regularly need to gain insights from text data, but have little experience with tuning NLP pipelines.
 
-This repo contains a minimal working prototype, demonstrating the potential of the technology. It has been developed during AI Talent Hub Hackathon organized by ITMO University in September, 2023.
+This repo contains a minimal working prototype, demonstrating the potential of the technology. It has been developed during AI Talent Hub Hackathon organized by the ITMO University in September, 2023.
 
 ## Installation
 - clone this repo to your local machine
