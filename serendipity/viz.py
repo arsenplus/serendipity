@@ -1,139 +1,17 @@
-import re
-import spacy
 import itertools
-
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from utils import clean_doc
 
-from bertopic import BERTopic
 from plotly.subplots import make_subplots
 from scipy.cluster.hierarchy import fcluster, linkage
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
-from bertopic.representation import KeyBERTInspired
-from sentence_transformers import SentenceTransformer
-
-from umap import UMAP
-from tqdm.auto import tqdm
-from hdbscan import HDBSCAN
-from transformers import pipeline
-
-import nltk
-from nltk.corpus import stopwords
-nltk.download('stopwords')
-stopwords = set(stopwords.words('english'))
 
 
-def join_docs(doc):
-    return '\n\n'.join(doc)
-
-
-def clean_doc(doc):
-    doc = doc.lower()
-    doc = re.sub('[^a-z A-Z 0-9-]+', '', doc)
-    doc = " ".join([word for word in doc.split() if word not in stopwords])
-    return doc
-
-
-def model_topics(
-        texts,
-        embedder_name="all-MiniLM-L6-v2",
-        n_neighbors=15,
-        n_components=10,
-        umap_metric='cosine',
-        random_state=42,
-        min_cluster_size=50,
-        hdbscan_metric='euclidean'
-):
-
-    embedding_model = SentenceTransformer(embedder_name)
-    embeddings = embedding_model.encode(texts)
-
-    umap_model = UMAP(
-        n_neighbors=n_neighbors,
-        n_components=n_components,
-        min_dist=0.0,
-        metric=umap_metric,
-        random_state=random_state
-    )
-
-    hdbscan_model = HDBSCAN(
-        min_cluster_size=min_cluster_size,
-        metric=hdbscan_metric,
-        cluster_selection_method='eom',
-        prediction_data=True
-    )
-
-    representation_model = KeyBERTInspired()
-
-    topic_model = BERTopic(
-        embedding_model=embedding_model,
-        umap_model=umap_model,
-        hdbscan_model=hdbscan_model,
-        representation_model=representation_model,
-        top_n_words=10,
-        verbose=False
-    )
-
-    topics, _ = topic_model.fit_transform(texts, embeddings)
-
-    return topics, topic_model, embeddings
-
-
-def model_ner_tokens(topics, texts):
-
-    nlp = spacy.load('en_core_web_sm')
-
-    ner_topics = []
-    all_ents = []
-
-    for topic, text in tqdm(zip(topics, texts), total=len(texts)):
-        doc = nlp(text)
-        for ent in doc.ents:
-            ner_topics.append(topic)
-            all_ents.append(str(ent))
-
-    # TO-DO: implement coreference resolution and NEs linking across docs
-    return ner_topics, all_ents
-
-
-def model_zero_shot_classification(candidate_labels, texts, bs=16):
-
-    classifier = pipeline(
-        "zero-shot-classification",
-        model="MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
-        batch_size=bs
-        )
-
-    classes = []
-
-    for idx in tqdm(range(0, len(texts) - bs + 1, bs)):
-        batch = list(texts[idx:idx+bs])
-        output = classifier(batch, candidate_labels)
-        classes.extend([res['labels'][0] for res in output])
-
-    return classes
-
-
-def dim_reduc_texts_topics(textual_embeddings, topic_embeddings):
-
-    umap_model = UMAP(
-        n_neighbors=15,
-        n_components=2,
-        min_dist=0.0,
-        metric='cosine',
-        random_state=42
-    )
-
-    projected_texts = umap_model.fit_transform(textual_embeddings)
-    projected_topics = umap_model.transform(topic_embeddings)
-
-    return projected_texts, projected_topics
-
-
-def topic_bubbles(
+def viz_topic_bubbles(
         topic_model,
         projected_topics,
         texts
@@ -174,7 +52,7 @@ def topic_bubbles(
     return fig
 
 
-def scatter_texts(
+def viz_scatter_texts(
         topic_model,
         texts,
         projected_texts
@@ -217,7 +95,7 @@ def scatter_texts(
     return fig
 
 
-def word_scores(
+def viz_word_scores(
         topic_model,
         top_n_topics=8,
         n_words=5,
@@ -301,7 +179,7 @@ def word_scores(
     return fig
 
 
-def topic_heatmap(
+def viz_topic_heatmap(
         topic_model,
         topics=None,
         top_n_topics=None,
@@ -389,8 +267,7 @@ def topic_heatmap(
     return fig
 
 
-def classes_per_corpus(classes):
-
+def viz_classes_corpus(classes):
     df = pd.DataFrame({'classes': classes})
     df = df.value_counts().rename_axis('classes').reset_index(name='counts')
     fig = px.bar(df, x='classes', y='counts', color='classes')
@@ -398,7 +275,7 @@ def classes_per_corpus(classes):
     return fig
 
 
-def classes_per_topic(classes, topics,topic=1):
+def viz_classes_per_topic(classes, topics,topic=1):
 
     df = pd.DataFrame({'classes': classes, 'topics': topics})
     df = df[df['topics'] == topic].drop(['topics'], axis=1)
@@ -408,8 +285,7 @@ def classes_per_topic(classes, topics,topic=1):
     return fig
 
 
-def ner_per_topic(ents, ner_topics, topic=1):
-
+def viz_ner_per_topic(ents, ner_topics, topic=1):
     df = pd.DataFrame({'ents': ents, 'topics': ner_topics})
     df = df[df['topics'] == topic]
     df.drop(['topics'], inplace=True, axis=1)
@@ -420,8 +296,7 @@ def ner_per_topic(ents, ner_topics, topic=1):
     return fig
 
 
-def n_grams_per_topic(texts, topic_model, topic=1, n=3):
-
+def viz_n_grams_per_topic(texts, topic_model, topic=1, n=3):
     ngram_freq_df = pd.DataFrame()
     vectorizer = CountVectorizer(ngram_range=(n,n))
     df = topic_model.get_document_info(texts)
