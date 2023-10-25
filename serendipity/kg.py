@@ -55,9 +55,9 @@ class KB():
         self.relations = []
 
 
-    def merge_with_kb(self, kb2):
+    def merge_with_kb(self, kb2, text):
         for rel in kb2.relations:
-            self.add_relation(rel)
+            self.add_relation(rel, text)
 
 
     def are_relations_equal(self, rel1, rel2):
@@ -93,15 +93,23 @@ class KB():
 
 
     def add_entity(self, ent):
-        self.entities[ent["title"]] = {k:v for k,v in ent.items() if k != "title"}
+        topic_label = ent["topic_label"][0]
+        if ent["title"] not in self.entities:
+            self.entities[ent["title"]] = {k:v for k,v in ent.items() if k != "title"}
+        else:
+            self.entities[ent["title"]]["topic_label"].append(topic_label)
 
 
-    def add_relation(self, rel):
+    def add_relation(self, rel, text):
         candidate_entities = [rel["head"], rel["tail"]]
         entities = [self.get_wikipedia_data(ent) for ent in candidate_entities]
 
         if any(ent is None for ent in entities):
             return
+
+        topic_label = rel["meta"][text]["topic_label"]
+        for ent in entities:
+            ent["topic_label"] = [topic_label]
 
         for ent in entities:
             self.add_entity(ent)
@@ -116,7 +124,14 @@ class KB():
 
 
 
-def from_text_to_kb(text, model, tokenizer, span_length=128):
+def from_text_to_kb(
+        text,
+        topic_label,
+        model,
+        tokenizer,
+        span_length=128
+        ):
+
     inputs = tokenizer([text], return_tensors="pt")
 
     num_tokens = len(inputs["input_ids"][0])
@@ -168,21 +183,24 @@ def from_text_to_kb(text, model, tokenizer, span_length=128):
         for relation in relations:
             relation["meta"] = {
                 text: {
-                    "spans": [spans_boundaries[current_span_index]]
+                    "spans": [spans_boundaries[current_span_index]],
+                    "topic_label": topic_label
                 }
             }
-            kb.add_relation(relation)
+            kb.add_relation(relation, text)
         idx += 1
 
     return kb
 
 
-def from_corpus_to_kb(corpus):
+def from_corpus_to_kb(
+        corpus,
+        topic_labels,
+        model,
+        tokenizer
+        ):
     kb = KB()
-    for text in tqdm(corpus):
-        try:
-            kb_text = from_text_to_kb(text)
-            kb.merge_with_kb(kb_text)
-        except Exception as e:
-            print(e)
+    for text, label in tqdm(zip(corpus, topic_labels)):
+        kb_text = from_text_to_kb(text, label, model, tokenizer)
+        kb.merge_with_kb(kb_text, text)
     return kb

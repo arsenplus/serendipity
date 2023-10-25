@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from utils import clean_doc
+from serendipity.utils import clean_doc
 
 from plotly.subplots import make_subplots
 from scipy.cluster.hierarchy import fcluster, linkage
